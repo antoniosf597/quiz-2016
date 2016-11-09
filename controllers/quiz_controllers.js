@@ -21,7 +21,7 @@ exports.load = function(req, res, next, quizId){
 
 exports.index = function(req,res){
 	models.Quiz.findAll().then(function(quizes){
-		res.render('quizes/index.ejs', {quizes: quizes, errors: []});
+		res.render('quizes/index.ejs', {quizes: quizes});
 	}).catch( function(error) { next(error);})
 };
 
@@ -33,7 +33,7 @@ exports.index = function(req,res){
 
 exports.show = function(req,res){
 	//models.Quiz.findById(req.params.quizId).then(function(quiz){
-		res.render('quizes/show',{quiz: req.quiz, errors: []});
+		res.render('quizes/show',{quiz: req.quiz});
 //});
 	
 
@@ -59,7 +59,7 @@ exports.new = function(req, res){
 	var quiz = models.Quiz.build( // crea objeto quiz
 		{pregunta: "Pregunta", respuesta: "Respuesta"}
 		);
-		res.render('quizes/new', {quiz: quiz, errors: []});
+		res.render('quizes/new', {quiz: quiz});
 	};
 
 // POST /quizes/create
