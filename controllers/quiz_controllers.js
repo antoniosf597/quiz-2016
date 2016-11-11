@@ -32,25 +32,26 @@ exports.index = function(req,res){
 // GET /quizes/:id
 
 exports.show = function(req,res){
-	//models.Quiz.findById(req.params.quizId).then(function(quiz){
-		res.render('quizes/show',{quiz: req.quiz});
-//});
+
+		res.render('quizes/show',{quiz: req.quiz, fallos: req.query.fallos});
+
 	
 
 };
 
 //GET /quizes/:id/answer
+
 exports.answer = function(req,res){
-//models.Quiz.find
-//ById(req.params.quizId).then(function(quiz){	
-	var resultado = 'Incorrecto';
+	
+	var almacen = ++req.query.fallos;	
+	var resultado = 'Incorrecto'; 
 
 	if(req.query.respuesta === req.quiz.respuesta){
 		resultado = 'Correcto';
-		//res.render('quizes/answer',{quiz: quiz, respuesta: 'Correcto'});
-	}//else{
-		res.render('quizes/answer',{quiz: req.quiz, respuesta:resultado, errors: []});
-	//}
+		almacen = 0;
+	}
+		res.render('quizes/answer',{quiz: req.quiz, respuesta:resultado, cont: almacen});
+	
 
 };
 

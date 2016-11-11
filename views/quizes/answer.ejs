@@ -10,7 +10,16 @@
 
 		
 		<%= respuesta %>
-		<a href="/quizes">Intentalo otra vez</a>
+		  <% if (respuesta === 'Incorrecto') { %>
+       
+          
+        <a href="/quizes/<%= quiz.id %>?fallos=<%= cont %>">Intentalo otra vez</a>
+      
+        <% } else{ %>
+		 <p>Has acertado!</p>
+          
+        <a href="/quizes/">Volver a preguntas</a>
 
+		 <% } %>
 	</body>
 </html>

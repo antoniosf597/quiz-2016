@@ -10,9 +10,17 @@
 		
 		<form method="get" action="/quizes/<%= quiz.id %>/answer">
 
+	<%
+		if( fallos != 0 ){ %>
+		<p>La respuesta correcta empieza por: </p>
+        <span><%= quiz.respuesta.charAt(0)  %></span></p>
+		<% } %>
+
 		<p>Pregunta:<%= quiz.pregunta %> </p>
-		<input type="text" name="respuesta" value="Respuesta">
+		<input type="text" name="respuesta" placeholder="Respuesta">
+		<input type="hidden" name="fallos" value="<%= fallos %>" />
 		<input type="submit" name="Enviar">
+
 		</form>
 
 	</body>
