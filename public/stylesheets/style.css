@@ -11,3 +11,26 @@ footer               { background: #eee; text-align: center;}
 nav span { margin: 0px 10px 0px 0px;}
 
 #ErrorMsgs { color: #f61; font-size: smaller; }
+
+.edit:hover{
+	transition: all 0.5s ease-out;
+	transform: rotate(-7deg);
+
+}
+.edit{
+	box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+}
+.pre:hover{
+	
+	color: red;
+}
+.del{
+	box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+}
+button{
+	box-shadow: 4px 4px 4px rgba(0,0,0,0.2);
+}
+.del:hover{
+	background: red;
+	color: white;
+}
