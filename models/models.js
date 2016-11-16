@@ -45,4 +45,27 @@ sequelize.sync().then(function(){
 	});
 });
 
+//Importar definiciones de la tabla quiz
+
+var quiz_path = path.join(__dirname,'quiz');
+var Quiz = sequelize.import(quiz_path);
+
+// tabla comment importar definicion
+var comment_path = path.join(__dirname, 'comment');
+var Comment = sequelize.import(comment_path);
+
+Comment.belongsTo(Quiz);
+Quiz.hasMany(Comment);
+
+exports.Quiz = Quiz;
+exports.Comment = Comment;
+
+
+
+
+
+
+
+
+
 
