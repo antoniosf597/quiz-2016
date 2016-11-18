@@ -11,12 +11,12 @@
 		<form method="get" action="/quizes/<%= quiz.id %>/answer">
 
 		<p>Pregunta:<%= quiz.pregunta %> </p>
-		<input type="text" name="respuesta" value="Respuesta">
+		<input type="text" name="respuesta" placeholder="Respuesta">
 		<input type="submit" name="Enviar">
 		</form>
 		<p><a href="/quizes/<%= quiz.id %>/comments/new">
 		<br>
-			<button>Nuevo comentario</button>
+			<button id="com">Nuevo comentario</button>
 		</a></p><br>
 
 		<p><strong>Comentarios:</strong></p>
