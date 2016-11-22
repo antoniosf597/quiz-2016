@@ -8,6 +8,7 @@ var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var routes = require('./routes/index');
 //var users = require('./routes/users');
+var session = require('express-session');
 
 var app = express();
 
@@ -21,9 +22,24 @@ app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());// borrado { extended: false }
-app.use(cookieParser());
+app.use(cookieParser('Quiz 2016'));
+app.use(session());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(methodOverride('_method'));
+
+
+app.use(function(req, res, next){
+// guardar path en session.redir para pedir despues de login
+if(!req.path.match(/\/login|\/logout/)){
+  req.session.redir = req.path;
+}
+
+// Hacer visible req.session en las vistas
+res.locals.session = req.session;
+next();
+});
+
+
 
 app.use('/', routes);
 

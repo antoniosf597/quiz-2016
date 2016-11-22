@@ -1,9 +1,12 @@
+
+
+
 <table>
 	<% var i; for(i=0; i < quizes.length; i++){ %>
 	<tr>
 
 		<td><a class="pre" href="/quizes/<%= quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
-
+<% if (session.user){ %>
 		<td><a href="/quizes/<%= quizes[i].id %>/edit"><button class="edit">Editar </button></a></td>
 
 		<td>
@@ -12,10 +15,14 @@
 			<button type="submit" class="del" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');" >
 			Borrar
 			</button>
+		<% } %>	
 			</form>
 		</td>
 	</tr>
 	<% } %>
 </table>
+<% if (session.user){ %>
 <p> <a href="/quizes/new"><button type="button" id="crearPregunta">Crear pregunta </button></a></p>
-
+<% } else {%>	
+<p>Debes ingresar como usuario <br>para poder editar, borrar o crear preguntas.</p>
+<% } %>
