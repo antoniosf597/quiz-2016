@@ -31,6 +31,14 @@ exports.destroy =function(req, res){
 	res.redirect(req.session.redir.toString());
 
 };
+
+exports.adminRequired = function(req, res, next){
+	if(req.session.user.username === 'admin'){
+		next();
+	}else{
+		res.redirect('/login');
+	}
+}
 // MW de autorizacion de accesos HTTP restringidos
 exports.loginRequired = function(req, res, next){
 	if(req.session.user){
