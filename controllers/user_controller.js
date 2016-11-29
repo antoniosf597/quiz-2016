@@ -33,3 +33,40 @@ exports.autenticar = function (login, password, callback){
 		});
 }
 
+
+// GET /users/new
+exports.new = function(req, res){
+	var user = models.User.build( // crea objeto user
+		);
+		res.render('users/new', {user: user});
+	};
+
+// POST /users/create
+
+exports.create = function(req, res){
+	var user = models.User.build( req.body.user);
+
+user
+.validate()
+.then(
+	function(err){
+		if(err){
+			res.render('users/new', {user: user, errors: err.errors});
+		}else{
+			// guarda en DB los campos usuario y contraseña
+			user.save({fields: ["username", "password"]}).then(function(){
+				res.redirect('/users')})
+
+			}
+		}
+	);
+	};
+
+
+//GET /users
+
+exports.index = function(req,res){
+	models.User.findAll().then(function(users){
+		res.render('users/index.ejs', {users: users});
+	}).catch( function(error) { next(error);})
+};
