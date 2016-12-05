@@ -52,15 +52,29 @@ user
 	function(err){
 		if(err){
 			res.render('users/new', {user: user, errors: err.errors});
-		}else{
-			// guarda en DB los campos usuario y contraseña
-			user.save({fields: ["username", "password"]}).then(function(){
-				res.redirect('/users')})
 
+		}else{ 
+			if(user.password !== req.body.user['password2']){
+				res.render('users/new', {user: user, errors: [{message: 'Las contraseñas no coinciden'}]});
+
+			}else{
+				// guarda en DB los campos usuario y contraseña
+				user.save({fields: ["username", "password"]}).then(function(){
+				res.redirect('/users')})
 			}
 		}
+	}
 	);
 	};
+
+
+//DELETE /users/:id
+exports.destroy = function(req, res){
+	
+	req.user.destroy().then( function(){
+		res.redirect('/users');
+	}).catch(function(error){next(error)});
+};
 
 
 //GET /users

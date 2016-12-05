@@ -12,6 +12,8 @@ router.get('/', function(req, res) {
 // Autoload
 router.param('quizId', quizController.load); // autoload :quizId
 router.param('commentId', commentController.load); // autoload
+
+router.param('userId', userController.load);
 //router.get('/quizes/question',quizController.question);
 //router.get('/quizes/answer',quizController.answer);
 
@@ -41,6 +43,7 @@ sessionController.loginRequired, commentController.publish);
 router.get('/users/new', userController.new);
 router.post('/users/create', userController.create);
 router.get('/users', userController.index);
-
+router.put('/users/:userId(\\d+)',userController.loginRequired, userController.update);
+router.delete('/users/:userId(\\d+)',userController.adminRequired, userController.destroy);
 
 module.exports = router;
