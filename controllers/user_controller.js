@@ -68,12 +68,56 @@ user
 	};
 
 
+// Autoload
+
+exports.load = function(req, res, next, userId){
+		
+	models.User.findOne({
+		where: { id: Number(userId) }
+	}).then(
+		function(user){
+			if(user){
+				req.user = user;
+				next();
+			}else{
+				next(new Error('No existe userId='+ userId));
+			}
+		}
+
+		).catch(function (error){ next(error);});
+};
+// PUT /user/:id
+exports.update = function(req, res){
+	req.user.username = req.body.user.username;
+	req.user.password = req.body.user.password;
+
+req.user
+.validate()
+.then(
+	function(err){
+		if(err){
+			res.render('users/edit', {user: req.user, errors: err.errors});
+		}else{
+			req.user
+			.save({fields: ["username", "password"]})
+			.then(function(){res.redirect('/users');});
+
+			}
+		}
+	);
+	};
 //DELETE /users/:id
 exports.destroy = function(req, res){
 	
 	req.user.destroy().then( function(){
 		res.redirect('/users');
 	}).catch(function(error){next(error)});
+};
+// GET users/:id/edit
+
+exports.edit = function(req, res){
+	var user = req.user;
+	res.render('users/edit', {user: user, errors: []});
 };
 
 

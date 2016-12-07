@@ -4,7 +4,7 @@
 	<tr>
 
 		<td><%= users[i].username %> </td>
-<% if (session.user){ %>
+<% if (session.user.username == 'admin' || session.user.username == users[i].username){ %>
 		<td><a href="/users/<%= users[i].id %>/edit"><button class="edit">Editar </button></a></td>
 
 		<td>

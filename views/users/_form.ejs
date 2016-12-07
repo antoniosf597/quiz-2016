@@ -1,22 +1,14 @@
 
-<label for="preg" class="rem">Pregunta: </label>
+<div class="field">
+	<label for="preg" class="rem">Usuario: </label>
 
-<input type="text" id="preg" name="quiz[pregunta]"  
-value="<%=  quiz.pregunta%>" 
-<% if(!quiz.pregunta){ %>
-	placeholder="Pregunta" 
+	<input type="text" id="preg" name="user[username]"  <%if(user.username){ %> value="<%=user.username%>" <% }%> /><br>
+</div>
 
-<% } %>
+<div class="field">
+<label for="resp" class="rem" >Password:</label>
+<input type="text" id="resp" name="user[password]" <%if(user.username){ %> value="<%=user.password%>" <% }%>  /> <br>
+</div>
 
-/><br>
-
-<label for="resp" class="rem" >Respuesta:</label>
-<input type="text" id="resp" name="quiz[respuesta]"  
-value="<%=  quiz.respuesta%>" 
-<% if(!quiz.respuesta){ %>
-	placeholder="Respuesta" 
-<% } %>
-
- /> <br>
-<a href="/quizes"><button type="button">Cancelar </button></a>
-<input type="submit" value="Salvar">
+<a href="/users"><button type="button">Cancelar </button></a>
+<input type="submit" value="Guardar">

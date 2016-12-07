@@ -43,7 +43,8 @@ sessionController.loginRequired, commentController.publish);
 router.get('/users/new', userController.new);
 router.post('/users/create', userController.create);
 router.get('/users', userController.index);
-router.put('/users/:userId(\\d+)',userController.loginRequired, userController.update);
-router.delete('/users/:userId(\\d+)',userController.adminRequired, userController.destroy);
+router.get('/users/:userId(\\d+)/edit',userController.edit);
+router.put('/users/:userId(\\d+)', userController.update);
+router.delete('/users/:userId(\\d+)', userController.destroy);
 
 module.exports = router;
